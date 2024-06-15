@@ -19,7 +19,7 @@ export default function Page() {
 function LoginButton() {
   const { pending } = useFormStatus()
  
-  const handleClick = (event) => {
+  const handleClick = (event: { preventDefault: () => void }) => {
     if (pending) {
       event.preventDefault()
     }
