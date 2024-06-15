@@ -1,17 +1,16 @@
 import type { NextRequest } from 'next/server'
  
 export function middleware(request: NextRequest) {
-  const currentUser = request.cookies.get('currentUser')?.value
- 
+  const currentUser = request.cookies.get('currentUser')?.value;
+  console.log('Current User:', currentUser); // Tambahkan ini untuk debugging
+
   if (currentUser && !request.nextUrl.pathname.startsWith('/dashboard')) {
-    return Response.redirect(new URL('/dashboard', request.url))
+    console.log('Redirecting to /dashboard'); // Tambahkan ini untuk debugging
+    return Response.redirect(new URL('/dashboard', request.url));
   }
- 
+
   if (!currentUser && !request.nextUrl.pathname.startsWith('/login')) {
-    return Response.redirect(new URL('/login', request.url))
+    console.log('Redirecting to /login'); // Tambahkan ini untuk debugging
+    return Response.redirect(new URL('/login', request.url));
   }
-}
- 
-export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
 }
