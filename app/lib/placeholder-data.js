@@ -42,9 +42,9 @@ const customers = [
   },
   {
     id: '76d65c26-f784-44a2-ac19-586678f7c2f2',
-    name: 'Michael Novotny',
+    name: 'Kopi Hitam',
     email: 'michael@novotny.com',
-    image_url: '/customers/kopih.jpg',
+    image_url: '/customers/michael-novotny.png',
   },
   {
     id: 'd6e15727-9fe1-4961-8c5b-ea44a9bd81aa',
