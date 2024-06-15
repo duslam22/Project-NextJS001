@@ -19,11 +19,11 @@ export default function Page() {
 function LoginButton() {
   const { pending } = useFormStatus()
  
-const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-  if (pending) {
-    event.preventDefault();
+  const handleClick = (event: { preventDefault: () => void }) => {
+    if (pending) {
+      event.preventDefault()
+    }
   }
-}
  
   return (
     <button aria-disabled={pending} type="submit" onClick={handleClick}>
