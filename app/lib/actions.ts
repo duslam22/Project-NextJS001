@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { signIn } from '@/auth';
+// import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 
 
@@ -81,33 +81,33 @@ export async function updateInvoice(id: string, formData: FormData) {
 //   }
 // }
 
-export async function authenticate(
-  prevState: string | undefined,
-  formData: FormData,
-) {
-  try {
-    const result = await signIn('credentials', {
-      redirect: false,
-      email: formData.get('email'),
-      password: formData.get('password')
-    });
+// export async function authenticate(
+//   prevState: string | undefined,
+//   formData: FormData,
+// ) {
+//   try {
+//     const result = await signIn('credentials', {
+//       redirect: false,
+//       email: formData.get('email'),
+//       password: formData.get('password')
+//     });
 
-    if (result.error) {
-      throw new Error(result.error);
-    }
+//     if (result.error) {
+//       throw new Error(result.error);
+//     }
 
-    // Redirect manually if needed
-    window.location.href = '@/app/dashboard';
-  } catch (error) {
-    console.error('Error during sign in:', error);
-    if (error instanceof AuthError) {
-      switch (error.type) {
-        case 'CredentialsSignin':
-          return 'Invalid credentials.';
-        default:
-          return 'Something went wrong.';
-      }
-    }
-    throw error;
-  }
-}
+//     // Redirect manually if needed
+//     window.location.href = '@/app/dashboard';
+//   } catch (error) {
+//     console.error('Error during sign in:', error);
+//     if (error instanceof AuthError) {
+//       switch (error.type) {
+//         case 'CredentialsSignin':
+//           return 'Invalid credentials.';
+//         default:
+//           return 'Something went wrong.';
+//       }
+//     }
+//     throw error;
+// //   }
+// }
