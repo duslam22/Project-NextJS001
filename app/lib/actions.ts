@@ -97,7 +97,7 @@ export async function authenticate(
     }
 
     // Redirect manually if needed
-    window.location.href = '@/app/dashboard';
+    window.location.href = '@/dashboard';
   } catch (error) {
     console.error('Error during sign in:', error);
     if (error instanceof AuthError) {
