@@ -1,3 +1,7 @@
+import AcmeLogo from '@/app/ui/acme-logo';
+import { ArrowRightIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
+import Image from 'next/image';
 import Pagination from '@/app/ui/invoices/pagination';
 import Search from '@/app/ui/search';
 import Table from '@/app/ui/invoices/table';
@@ -19,22 +23,48 @@ export default async function Page({
   const totalPages = await fetchInvoicesPages(query);
 
   return (
-    <div className="w-full">
-      <div className="flex w-full items-center justify-between">
-        <h1 className="text-2xl">Invoices</h1>
-      </div>
-      <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
-        <Search placeholder="Search invoices..." />
-      </div>
-      <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
-        <Table query={query} currentPage={currentPage} />
-      </Suspense>
-      <div className="mt-5 flex w-full justify-center">
-        <Pagination totalPages={totalPages} />
-      </div>
+    <div className="min-h-screen bg-gray-100">
+      <header className="bg-white shadow">
+        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+          <AcmeLogo />
+          <nav className="flex space-x-4">
+            <Link href="/">
+              <a className="text-gray-900 hover:text-gray-700">Home</a>
+            </Link>
+            <Link href="/shop">
+              <a className="text-gray-900 hover:text-gray-700">Shop</a>
+            </Link>
+            <Link href="/contact">
+              <a className="text-gray-900 hover:text-gray-700">Contact</a>
+            </Link>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+          <h1 className="text-4xl font-bold text-gray-900 mb-8">Invoices</h1>
+          <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
+            <Search placeholder="Search invoices..." />
+          </div>
+          <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
+            <Table query={query} currentPage={currentPage} />
+          </Suspense>
+          <div className="mt-5 flex w-full justify-center">
+            <Pagination totalPages={totalPages} />
+          </div>
+        </div>
+      </main>
+
+      <footer className="bg-white shadow mt-16">
+        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-gray-500">&copy; 2024 Acme Marketplace. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   );
 }
+
 
 // import AcmeLogo from '@/app/ui/acme-logo';
 // import { ArrowRightIcon } from '@heroicons/react/24/outline';
