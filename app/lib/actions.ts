@@ -4,8 +4,7 @@ import { z } from 'zod';
 import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { signIn } from '@/auth';
-import { AuthError } from 'next-auth';
+
 
 
 
@@ -59,25 +58,25 @@ export async function updateInvoice(id: string, formData: FormData) {
     revalidatePath('/dashboard/invoices');
   }
 
-export async function authenticate(
-  prevState: string | undefined,
-  formData: FormData,
-) {
-  try {
-    console.log('Signing in with formData:', formData); // Tambahkan ini untuk debugging
-    await signIn('credentials', formData);
-    console.log('Sign in successful'); // Tambahkan ini untuk debugging
-  } catch (error) {
-    console.error('Error during sign in:', error); // Tambahkan ini untuk debugging
-    if (error instanceof AuthError) {
-      switch (error.type) {
-        case 'CredentialsSignin':
-          return 'Invalid credentials.';
-        default:
-          return 'Something went wrong.';
-      }
-    }
-    throw error;
-  }
-}
+// export async function authenticate(
+//   prevState: string | undefined,
+//   formData: FormData,
+// ) {
+//   try {
+//     console.log('Signing in with formData:', formData); // Tambahkan ini untuk debugging
+//     await signIn('credentials', formData);
+//     console.log('Sign in successful'); // Tambahkan ini untuk debugging
+//   } catch (error) {
+//     console.error('Error during sign in:', error); // Tambahkan ini untuk debugging
+//     if (error instanceof AuthError) {
+//       switch (error.type) {
+//         case 'CredentialsSignin':
+//           return 'Invalid credentials.';
+//         default:
+//           return 'Something went wrong.';
+//       }
+//     }
+//     throw error;
+//   }
+// }
 
