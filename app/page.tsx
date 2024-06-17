@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'; // Import useEffect and useState
 import AcmeLogo from '@/app/ui/acme-logo';
 import Link from 'next/link';
 import Search from '@/app/ui/search';
@@ -7,11 +6,8 @@ import Table from '@/app/ui/invoices/table1'; // Assuming this component renders
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import { Suspense } from 'react';
 import { fetchInvoicesPages } from '@/app/lib/data';
-import { Carousel } from 'react-responsive-carousel'; // Import Carousel from react-responsive-carousel
-import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import carousel styles
-import Image from 'next/image'; // Import Image component from Next.js
 
-export default function Page({
+export default async function Page({
   searchParams,
 }: {
   searchParams?: {
@@ -21,16 +17,8 @@ export default function Page({
 }) {
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
-  const [totalPages, setTotalPages] = useState(0); // State to hold totalPages
 
-  useEffect(() => {
-    const fetchTotalPages = async () => {
-      const pages = await fetchInvoicesPages(query);
-      setTotalPages(pages);
-    };
-
-    fetchTotalPages();
-  }, [query]); // Call useEffect whenever `query` changes
+  const totalPages = await fetchInvoicesPages(query);
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -50,33 +38,7 @@ export default function Page({
           </nav>
         </div>
       </header>
-
-      <Carousel showThumbs={false} showStatus={false} infiniteLoop autoPlay>
-        <div>
-          <Image
-            src="/images/slider-image1.jpg"
-            alt="Slider Image 1"
-            width={1000}
-            height={760}
-          />
-        </div>
-        <div>
-          <Image
-            src="/images/slider-image2.jpg"
-            alt="Slider Image 2"
-            width={1000}
-            height={760}
-          />
-        </div>
-        <div>
-          <Image
-            src="/images/slider-image3.jpg"
-            alt="Slider Image 3"
-            width={1000}
-            height={760}
-          />
-        </div>
-      </Carousel>
+      
 
       <main>
         <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
@@ -98,12 +60,15 @@ export default function Page({
 
       <footer className="bg-white shadow mt-16">
         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-gray-500">&copy; 2024 Acme Marketplace. All rights reserved.</p>
+          <p className="text-center text-gray-500">&copy; 2024 Kelomok. Angkatan 2020.</p>
         </div>
       </footer>
     </div>
   );
 }
+
+
+
 
 // import AcmeLogo from '@/app/ui/acme-logo';
 // import { ArrowRightIcon } from '@heroicons/react/24/outline';
