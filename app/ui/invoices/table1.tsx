@@ -12,38 +12,18 @@ export default async function InvoicesTable({
 }) {
   const invoices = await fetchFilteredInvoices(query, currentPage);
 
-  const handleBuyClick = () => {
-    // Logika untuk melakukan pembelian atau tindakan yang sesuai di sini
-
-    // Menampilkan notifikasi dengan memanipulasi langsung style pada elemen notifikasi
-    const notificationElement = document.getElementById('notification');
-    if (notificationElement) {
-      notificationElement.style.display = 'block';
-
-      // Atur timeout untuk menyembunyikan notifikasi setelah beberapa detik
-      setTimeout(() => {
-        notificationElement.style.display = 'none';
-      }, 3000); // Misalnya, notifikasi akan hilang setelah 3 detik
-    }
+  const handleBeliClick = (invoiceId: number) => {
+    alert(`Pembelian berhasil untuk invoice dengan ID: ${invoiceId}`);
   };
 
   return (
     <div className="mt-6 flow-root">
-      {/* Notifikasi */}
-      <div
-        id="notification"
-        className="bg-green-200 px-4 py-2 rounded-md text-green-800 my-4"
-        style={{ display: 'none' }}
-      >
-        Pembelian berhasil!
-      </div>
-
       <div className="grid grid-cols-4 gap-4">
         {invoices?.map((invoice) => (
           <div key={invoice.id} className="p-4 border border-gray-200 rounded-lg">
             <div className="flex items-center gap-3">
-              <Image
-                src={invoice.image_url}
+              <img
+                src={invoice.image_url} // Gunakan tag img untuk gambar karena Next.js Image membutuhkan konfigurasi yang lebih
                 width={58}
                 height={70}
                 alt={`${invoice.name}'s profile picture`}
@@ -54,7 +34,7 @@ export default async function InvoicesTable({
             <div className="flex justify-between mt-2">
               <button
                 className="px-4 py-2 bg-blue-200 rounded-md text-white hover:bg-blue-300"
-                onClick={handleBuyClick}
+                onClick={() => handleBeliClick(invoice.id)}
               >
                 Beli
               </button>
