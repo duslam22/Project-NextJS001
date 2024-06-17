@@ -20,16 +20,14 @@ export default async function InvoicesTable({
             <div className="flex items-center gap-3">
               <Image
                 src={invoice.image_url}
-                className="rounded-full"
-                width={45}
-                height={54}
+                width={58}
+                height={70}
                 alt={`${invoice.name}'s profile picture`}
               />
               <p className="text-sm font-medium">{invoice.name}</p>
             </div>
             <p className="text-sm text-gray-500">{formatCurrency(invoice.amount)}</p>
             <div className="flex justify-between mt-2">
-              <InvoiceStatus status={invoice.status} />
               <button className="px-4 py-2 bg-blue-200 rounded-md text-white hover:bg-blue-300">
                 Beli
               </button>
