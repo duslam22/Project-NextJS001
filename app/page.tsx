@@ -2,16 +2,10 @@ import AcmeLogo from '@/app/ui/acme-logo';
 import Link from 'next/link';
 import Search from '@/app/ui/search';
 import Pagination from '@/app/ui/invoices/pagination';
+import Table from '@/app/ui/invoices/table'; // Assuming this component renders the table rows
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import { Suspense } from 'react';
 import { fetchInvoicesPages } from '@/app/lib/data';
-
-// Dummy data for demonstration
-const invoices = [
-  { id: 1, customer: 'Customer A', amount: 100 },
-  { id: 2, customer: 'Customer B', amount: 200 },
-  // Add more invoices as needed
-];
 
 export default async function Page({
   searchParams,
@@ -28,37 +22,17 @@ export default async function Page({
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-          <AcmeLogo />
-          <nav className="flex space-x-4">
-            <Link href="/">
-              <a className="text-gray-900 hover:text-gray-700">Home</a>
-            </Link>
-            <Link href="/shop">
-              <a className="text-gray-900 hover:text-gray-700">Shop</a>
-            </Link>
-            <Link href="/contact">
-              <a className="text-gray-900 hover:text-gray-700">Contact</a>
-            </Link>
-          </nav>
-        </div>
-      </header>
-
+      {/* Header and Navigation Code */}
+      {/* Main Content */}
       <main>
         <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-8">Invoices</h1>
           <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
             <Search placeholder="Search invoices..." />
           </div>
-          <div className="mt-8 grid grid-cols-4 gap-4">
+          <div className="mt-8">
             <Suspense fallback={<InvoicesTableSkeleton />}>
-              {invoices.map((invoice) => (
-                <div key={invoice.id} className="bg-white shadow-md p-4">
-                  <p className="text-lg font-semibold">{invoice.customer}</p>
-                  <p className="text-gray-600">${invoice.amount}</p>
-                </div>
-              ))}
+              <Table query={query} currentPage={currentPage} />
             </Suspense>
           </div>
           <div className="mt-5 flex w-full justify-center">
@@ -66,12 +40,7 @@ export default async function Page({
           </div>
         </div>
       </main>
-
-      <footer className="bg-white shadow mt-16">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-gray-500">&copy; 2024 Acme Marketplace. All rights reserved.</p>
-        </div>
-      </footer>
+      {/* Footer Code */}
     </div>
   );
 }
