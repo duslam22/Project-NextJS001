@@ -2,10 +2,16 @@ import AcmeLogo from '@/app/ui/acme-logo';
 import Link from 'next/link';
 import Search from '@/app/ui/search';
 import Pagination from '@/app/ui/invoices/pagination';
-import Table from '@/app/ui/invoices/table'; // Assuming this component renders the table rows
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import { Suspense } from 'react';
 import { fetchInvoicesPages } from '@/app/lib/data';
+
+// Dummy data for demonstration
+const invoices = [
+  { id: 1, customer: 'Customer A', amount: 100 },
+  { id: 2, customer: 'Customer B', amount: 200 },
+  // Add more invoices as needed
+];
 
 export default async function Page({
   searchParams,
@@ -45,10 +51,14 @@ export default async function Page({
           <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
             <Search placeholder="Search invoices..." />
           </div>
-          <div className="mt-8">
+          <div className="mt-8 grid grid-cols-4 gap-4">
             <Suspense fallback={<InvoicesTableSkeleton />}>
-              <Table query={query} currentPage={currentPage} />
-              {/* Assuming Table component renders rows with customer and amount */}
+              {invoices.map((invoice) => (
+                <div key={invoice.id} className="bg-white shadow-md p-4">
+                  <p className="text-lg font-semibold">{invoice.customer}</p>
+                  <p className="text-gray-600">${invoice.amount}</p>
+                </div>
+              ))}
             </Suspense>
           </div>
           <div className="mt-5 flex w-full justify-center">
