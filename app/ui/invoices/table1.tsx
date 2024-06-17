@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { UpdateInvoice, DeleteInvoice } from '@/app/ui/invoices/buttons';
 import InvoiceStatus from '@/app/ui/invoices/status';
 import { formatCurrency } from '@/app/lib/utils';
 import { fetchFilteredInvoices } from '@/app/lib/data';
@@ -22,14 +21,18 @@ export default async function InvoicesTable({
               <Image
                 src={invoice.image_url}
                 className="rounded-full"
-                width={28}
-                height={28}
+                width={45}
+                height={54}
                 alt={`${invoice.name}'s profile picture`}
               />
               <p className="text-sm font-medium">{invoice.name}</p>
             </div>
             <p className="text-sm text-gray-500">{formatCurrency(invoice.amount)}</p>
             <div className="flex justify-between mt-2">
+              <InvoiceStatus status={invoice.status} />
+              <button className="px-4 py-2 bg-blue-200 rounded-md text-white hover:bg-blue-300">
+                Beli
+              </button>
             </div>
           </div>
         ))}
