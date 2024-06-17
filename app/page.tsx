@@ -45,10 +45,12 @@ export default async function Page({
           <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
             <Search placeholder="Search invoices..." />
           </div>
-          <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
-            <Table query={query} currentPage={currentPage} />
-            {/* Assuming Table component renders rows with customer and amount */}
-          </Suspense>
+          <div className="mt-8">
+            <Suspense fallback={<InvoicesTableSkeleton />}>
+              <Table query={query} currentPage={currentPage} />
+              {/* Assuming Table component renders rows with customer and amount */}
+            </Suspense>
+          </div>
           <div className="mt-5 flex w-full justify-center">
             <Pagination totalPages={totalPages} />
           </div>
