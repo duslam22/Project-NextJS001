@@ -1,10 +1,8 @@
 import AcmeLogo from '@/app/ui/acme-logo';
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import Image from 'next/image';
-import Pagination from '@/app/ui/invoices/pagination';
 import Search from '@/app/ui/search';
-import Table from '@/app/ui/invoices/table';
+import Pagination from '@/app/ui/invoices/pagination';
+import Table from '@/app/ui/invoices/table'; // Assuming this component renders the table rows
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import { Suspense } from 'react';
 import { fetchInvoicesPages } from '@/app/lib/data';
@@ -49,6 +47,7 @@ export default async function Page({
           </div>
           <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
             <Table query={query} currentPage={currentPage} />
+            {/* Assuming Table component renders rows with customer and amount */}
           </Suspense>
           <div className="mt-5 flex w-full justify-center">
             <Pagination totalPages={totalPages} />
