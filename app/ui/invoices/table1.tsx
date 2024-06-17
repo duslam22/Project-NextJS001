@@ -30,11 +30,6 @@ export default async function InvoicesTable({
             </div>
             <p className="text-sm text-gray-500">{formatCurrency(invoice.amount)}</p>
             <div className="flex justify-between mt-2">
-              <InvoiceStatus status={invoice.status} />
-              <div className="flex gap-2">
-                <UpdateInvoice id={invoice.id} />
-                <DeleteInvoice id={invoice.id} />
-              </div>
             </div>
           </div>
         ))}
