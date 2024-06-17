@@ -1,8 +1,14 @@
 import Image from 'next/image';
 import InvoiceStatus from '@/app/ui/invoices/status';
-import { BeliInvoice } from '@/app/ui/invoices/buttons';
 import { formatCurrency } from '@/app/lib/utils';
 import { fetchFilteredInvoices } from '@/app/lib/data';
+
+async function handlePurchase(invoiceId: string) {
+  // Perform purchase logic here (e.g., API call, state update, etc.)
+  console.log(`Purchased invoice with ID: ${invoiceId}`);
+  // Example: update UI after successful purchase
+  alert('Purchase successful!');
+}
 
 export default async function InvoicesTable({
   query,
@@ -29,8 +35,11 @@ export default async function InvoicesTable({
             </div>
             <p className="text-sm text-gray-500">{formatCurrency(invoice.amount)}</p>
             <div className="flex justify-between mt-2">
-              <button className="px-4 py-2 bg-blue-200 rounded-md text-white hover:bg-blue-300">
-                 <BeliInvoice id={invoice.id} />
+              <button
+                onClick={() => handlePurchase(invoice.id)} // Call handlePurchase with invoice ID
+                className="px-4 py-2 bg-blue-200 rounded-md text-white hover:bg-blue-300"
+              >
+                Beli
               </button>
             </div>
           </div>
