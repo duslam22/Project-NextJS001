@@ -2,7 +2,7 @@ import AcmeLogo from '@/app/ui/acme-logo';
 import Link from 'next/link';
 import Search from '@/app/ui/search';
 import Pagination from '@/app/ui/invoices/pagination';
-import Table from '@/app/ui/invoices/table'; // Assuming this component renders the table rows
+import Table from '@/app/ui/invoices/table1'; // Assuming this component renders the table rows
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import { Suspense } from 'react';
 import { fetchInvoicesPages } from '@/app/lib/data';
