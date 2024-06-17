@@ -59,47 +59,16 @@ export async function updateInvoice(id: string, formData: FormData) {
     revalidatePath('/dashboard/invoices');
   }
 
-// export async function authenticate(
-//   prevState: string | undefined,
-//   formData: FormData,
-// ) {
-//   try {
-//     console.log('Signing in with formData:', formData); // Tambahkan ini untuk debugging
-//     await signIn('credentials', formData);
-//     console.log('Sign in successful'); // Tambahkan ini untuk debugging
-//   } catch (error) {
-//     console.error('Error during sign in:', error); // Tambahkan ini untuk debugging
-//     if (error instanceof AuthError) {
-//       switch (error.type) {
-//         case 'CredentialsSignin':
-//           return 'Invalid credentials.';
-//         default:
-//           return 'Something went wrong.';
-//       }
-//     }
-//     throw error;
-//   }
-// }
-
 export async function authenticate(
   prevState: string | undefined,
   formData: FormData,
 ) {
   try {
-    const result = await signIn('credentials', {
-      redirect: false,
-      email: formData.get('email'),
-      password: formData.get('password')
-    });
-
-    if (result.error) {
-      throw new Error(result.error);
-    }
-
-    // Redirect manually if needed
-    window.location.href = '@/dashboard';
+    console.log('Signing in with formData:', formData); // Tambahkan ini untuk debugging
+    await signIn('credentials', formData);
+    console.log('Sign in successful'); // Tambahkan ini untuk debugging
   } catch (error) {
-    console.error('Error during sign in:', error);
+    console.error('Error during sign in:', error); // Tambahkan ini untuk debugging
     if (error instanceof AuthError) {
       switch (error.type) {
         case 'CredentialsSignin':
@@ -111,3 +80,4 @@ export async function authenticate(
     throw error;
   }
 }
+
