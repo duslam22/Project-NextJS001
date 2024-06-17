@@ -12,10 +12,6 @@ export default async function InvoicesTable({
 }) {
   const invoices = await fetchFilteredInvoices(query, currentPage);
 
-  const handleBeliClick = () => {
-    alert('Pembelian Berhasil'); // Menampilkan alert ketika tombol "Beli" diklik
-  };
-
   return (
     <div className="mt-6 flow-root">
       <div className="grid grid-cols-4 gap-4">
@@ -32,10 +28,7 @@ export default async function InvoicesTable({
             </div>
             <p className="text-sm text-gray-500">{formatCurrency(invoice.amount)}</p>
             <div className="flex justify-between mt-2">
-              <button
-                className="px-4 py-2 bg-blue-200 rounded-md text-white hover:bg-blue-300"
-                onClick={handleBeliClick} // Menambahkan event handler onClick
-              >
+              <button className="px-4 py-2 bg-blue-200 rounded-md text-white hover:bg-blue-300">
                 Beli
               </button>
             </div>
