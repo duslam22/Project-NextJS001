@@ -12,8 +12,8 @@ export default async function InvoicesTable({
 }) {
   const invoices = await fetchFilteredInvoices(query, currentPage);
 
-  const handleBeliClick = (invoiceId: number) => {
-    alert(`Pembelian berhasil untuk invoice dengan ID: ${invoiceId}`);
+  const handleBeliClick = () => {
+    alert('Pembelian Berhasil'); // Menampilkan alert ketika tombol "Beli" diklik
   };
 
   return (
@@ -22,8 +22,8 @@ export default async function InvoicesTable({
         {invoices?.map((invoice) => (
           <div key={invoice.id} className="p-4 border border-gray-200 rounded-lg">
             <div className="flex items-center gap-3">
-              <img
-                src={invoice.image_url} // Gunakan tag img untuk gambar karena Next.js Image membutuhkan konfigurasi yang lebih
+              <Image
+                src={invoice.image_url}
                 width={58}
                 height={70}
                 alt={`${invoice.name}'s profile picture`}
@@ -34,7 +34,7 @@ export default async function InvoicesTable({
             <div className="flex justify-between mt-2">
               <button
                 className="px-4 py-2 bg-blue-200 rounded-md text-white hover:bg-blue-300"
-                onClick={() => handleBeliClick(invoice.id)}
+                onClick={handleBeliClick} // Menambahkan event handler onClick
               >
                 Beli
               </button>
