@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import InvoiceStatus from '@/app/ui/invoices/status';
+import { BeliInvoice } from '@/app/ui/invoices/buttons';
 import { formatCurrency } from '@/app/lib/utils';
 import { fetchFilteredInvoices } from '@/app/lib/data';
 
@@ -29,7 +30,7 @@ export default async function InvoicesTable({
             <p className="text-sm text-gray-500">{formatCurrency(invoice.amount)}</p>
             <div className="flex justify-between mt-2">
               <button className="px-4 py-2 bg-blue-200 rounded-md text-white hover:bg-blue-300">
-                Beli
+                 <BeliInvoice id={invoice.id} />
               </button>
             </div>
           </div>

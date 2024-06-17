@@ -57,7 +57,21 @@ export async function updateInvoice(id: string, formData: FormData) {
     await sql`DELETE FROM invoices WHERE id = ${id}`;
     revalidatePath('/dashboard/invoices');
   }
-
+  export async function beliInvoice(id: string) {
+    try {
+      // Misalkan dalam kasus ini, kita hanya perlu menandai invoice sebagai 'paid'
+      await sql`
+        UPDATE invoices
+        SET status = 'paid'
+        WHERE id = ${id}
+      `;
+      revalidatePath('/dashboard/invoices');
+      redirect('/dashboard/invoices');
+    } catch (error) {
+      console.error('Gagal melakukan pembelian:', error);
+      throw error;
+    }
+  }
 // export async function authenticate(
 //   prevState: string | undefined,
 //   formData: FormData,

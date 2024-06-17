@@ -1,6 +1,8 @@
 import { PencilIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import { deleteInvoice } from '@/app/lib/actions';
+import { deleteInvoice, beliInvoice  } from '@/app/lib/actions';
+import { FormEvent } from 'react';
+
 
 export function CreateInvoice() {
   return (
@@ -31,6 +33,29 @@ export function DeleteInvoice({ id }: { id: string }) {
     <form action={deleteInvoiceWithId}>
       <button className="rounded-md border p-2 hover:bg-gray-100">
         <span className="sr-only">Delete</span>
+        <TrashIcon className="w-5" />
+      </button>
+    </form>
+  );
+}
+
+export function BeliInvoice({ id }: { id: string }) {
+  const beliInvoiceWithId = beliInvoice.bind(null, id);
+
+  const handleBeliInvoice = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault(); // Menggunakan preventDefault() untuk mencegah pengiriman form secara default
+    try {
+      await beliInvoiceWithId();
+      alert("Pembelian berhasil");
+    } catch (error) {
+      console.error("Gagal melakukan pembelian:", error);
+    }
+  };
+
+  return (
+    <form onSubmit={handleBeliInvoice} className="inline-block">
+      <button type="submit" className="rounded-md border p-2 hover:bg-gray-100">
+        <span className="sr-only">Beli</span>
         <TrashIcon className="w-5" />
       </button>
     </form>
