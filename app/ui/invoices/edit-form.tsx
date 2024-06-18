@@ -26,7 +26,7 @@ export default function EditInvoiceForm({
         {/* Customer Name */}
         <div className="mb-4">
           <label htmlFor="customer" className="mb-2 block text-sm font-medium">
-            Choose customer
+           Pilih Menu
           </label>
           <div className="relative">
             <select
@@ -36,7 +36,7 @@ export default function EditInvoiceForm({
               defaultValue={invoice.customer_id}
             >
               <option value="" disabled>
-                Select a customer
+                Pilih Menu
               </option>
               {customers.map((customer) => (
                 <option key={customer.id} value={customer.id}>
@@ -51,7 +51,7 @@ export default function EditInvoiceForm({
         {/* Invoice Amount */}
         <div className="mb-4">
           <label htmlFor="amount" className="mb-2 block text-sm font-medium">
-            Choose an amount
+            Edit Harga
           </label>
           <div className="relative mt-2 rounded-md">
             <div className="relative">
