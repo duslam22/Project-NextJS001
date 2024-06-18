@@ -41,7 +41,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
         {/* Invoice Amount */}
         <div className="mb-4">
           <label htmlFor="amount" className="mb-2 block text-sm font-medium">
-           Masukan Harga
+           Masuka Harga
           </label>
           <div className="relative mt-2 rounded-md">
             <div className="relative">
